@@ -17,7 +17,16 @@
     <div id="root"></div>
 
     <script type="text/babel">
+      const dishes = [
+        "Zurek",
+        "Potato and Cheese Pierogi",
+        "Saurkraut and Cottage Cheese Pierogi",
+        "Kielbasa",
+        "Kolache"
+      ];
+
       function Header(props) {
+        console.log(props);
         return (
           <header>
             <h1>{props.name}'s Kitchen</h1>
@@ -27,14 +36,14 @@
       function Main(props) {
         return (
           <section>
-            <p>
-              We serve the most {props.adjective}{" "}
-              food around.
-            </p>
+            <ul>
+              {props.dishes.map((dish) => (
+                <li>{dish}</li>
+              ))}
+            </ul>
           </section>
         );
       }
-
       function Footer(props) {
         return (
           <footer>
@@ -46,17 +55,19 @@
       function App() {
         return (
           <div>
-            <Header name="Cindy" />
-            <Main adjective="amazing" />
-            <Footer
-              year={new Date().getFullYear()}
+            <Header name="Doug" />
+            <Main
+              adjective="delightful"
+              dishes={dishes}
             />
+            <Footer year={new Date().getFullYear()} />
           </div>
         );
       }
-
       ReactDOM.render(
-        <App />,
+        <div>
+          <App />
+        </div>,
         document.getElementById("root")
       );
     </script>
